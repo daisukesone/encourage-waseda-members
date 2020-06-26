@@ -1,0 +1,194 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  @font-face {
+    font-family: 'Antro_Vectra';
+    src: url(font/Antro_Vectra_Bolder.otf);
+  }
+  
+  body {
+    font-family: "游ゴシック体", YuGothic;
+  }
+  
+  .header {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: linear-gradient(#2193b0, #6dd5ed);
+    font-family: 'Antro_Vectra';
+  
+    h1 {
+      font-size: 2em;
+      transform: rotate(-10deg);
+    }
+  }
+  
+  /*slideshow*/
+  $items: 4;
+$animation-time: 4s;
+$transition-time: .5s;
+$scale: 20%;
+
+$total-time: ($animation-time * $items);
+$scale-base-1: (1 + $scale / 100%);
+
+.slideshow {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slideshow-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: no-repeat 50% 50%;
+  background-size: cover;
+  animation-name: kenburns;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: $total-time;
+  opacity: 1;
+  transform: scale($scale-base-1);
+
+  @for $i from 1 through $items {
+    &:nth-child(#{$i}) {
+      animation-name: kenburns-#{$i};
+      z-index: ($items - $i);
+    }
+  }
+}
+
+@for $i from 1 through $items {
+  @keyframes kenburns-#{$i} {
+    $animation-time-percent: percentage($animation-time / $total-time);
+    $transition-time-percent: percentage($transition-time / $total-time);
+    
+    $t1: ($animation-time-percent * ($i - 1) - $transition-time-percent / 2);
+    $t2: ($animation-time-percent * ($i - 1) + $transition-time-percent / 2);
+    @if($t1 < 0%) { $t1: 0%; }
+    @if($t2 < 0%) { $t2: 0%; }
+
+    $t3: ($animation-time-percent * ($i) - $transition-time-percent / 2);
+    $t4: ($animation-time-percent * ($i) + $transition-time-percent / 2);
+    @if($t3 > 100%) { $t3: 100%; }
+    @if($t4 > 100%) { $t4: 100%; }
+
+    $t5: (100% - $transition-time-percent / 2);
+    $t6: (($t4 - $t1) * 100% / $t5);
+
+    #{$t1} { opacity: 1; transform: scale($scale-base-1); }
+    #{$t2} { opacity: 1; }
+    #{$t3} { opacity: 1; }
+    #{$t4} { opacity: 0; transform: scale(1); }
+    
+    @if($i != $items) {
+      100% { opacity: 0; transform: scale($scale-base-1); }
+    }
+    
+    @if($i == 1) {
+      $scale-plus: ($scale * (100% - $t5) / $t4);
+      $scale-plus-base-1: (1 + ($scale + $scale-plus) / 100%);
+    
+      #{$t5} { opacity: 0; transform: scale($scale-plus-base-1); }
+      100% { opacity: 1; }
+    }
+  }
+}
+  /*main*/
+  
+  .title h1 {
+    font-family: 'Antro_Vectra';
+    letter-spacing: 0.5em;
+    font-size: 2em;
+  }
+  
+  .text {
+    float: left;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    color: #f9f9f9;
+    font-size: 24px;
+    z-index: 1;
+  }
+  
+  .container {
+    width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .title {
+    margin: 48px auto;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .content {
+    display: flex;
+    width: 100%;
+    margin-bottom: 32px;
+  }
+  
+  .contents {
+    width: 300px;
+    display: inline;
+    border-style: solid;
+    border-color: #2193b0;
+    border: 2px;
+    padding: 0 8px;
+  }
+  
+  .sub-content1 {
+    width: 100%;
+    height: 200px;
+    position: relative;
+  }
+  
+  .images-content {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background-position: center center;
+    border: 8px solid #2193b0;
+    overflow: hidden;
+  }
+  
+  .image {
+    width: 180px;
+  }
+  
+  .furigana h2 {
+    background: linear-gradient(transparent 70%, #e8ff38 50%);
+    display: inline;
+    font-size: 18px;
+    position: absolute;
+    bottom: 24px;
+  }
+  
+  .name h3 {
+    font-size: 24px;
+    display: inline;
+    background: linear-gradient(transparent 70%, #e8ff38 50%);
+    position: absolute;
+    bottom: 0;
+  }
+  
+  .sub-content2 {
+    width: 100%;
+    margin-left: 8px;
+    font-size: 16px;
+    line-height: 32px;
+  }
+  
+  .team, .section {
+    background: linear-gradient(transparent 70%, #e8ff38 50%);
+  }
+
+
