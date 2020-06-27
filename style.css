@@ -508,4 +508,16 @@ body {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(70%, transparent), color-stop(50%, #e8ff38));
   background: linear-gradient(transparent 70%, #e8ff38 50%);
 }
+
+@media screen and (max-width: 767px) {
+  .content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .contents {
+    margin: 0 auto;
+  }
+}
 /*# sourceMappingURL=style.css.map */

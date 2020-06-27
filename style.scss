@@ -221,3 +221,13 @@ $scale-base-1: (1 + $scale / 100%);
   }
 
 
+
+  @media screen and (max-width: 767px) {
+    .content {
+      flex-direction: column;
+    }
+
+    .contents{
+      margin : 0 auto;
+    }
+  }
