@@ -510,6 +510,12 @@ body {
 }
 
 @media screen and (max-width: 767px) {
+  .header {
+    max-width: 100%;
+  }
+  .container {
+    max-width: 100%;
+  }
   .content {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;

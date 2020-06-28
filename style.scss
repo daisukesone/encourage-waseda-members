@@ -223,6 +223,12 @@ $scale-base-1: (1 + $scale / 100%);
 
 
   @media screen and (max-width: 767px) {
+    .header{
+      max-width: 100%;
+    }
+    .container{
+      max-width: 100%;
+    }
     .content {
       flex-direction: column;
     }
